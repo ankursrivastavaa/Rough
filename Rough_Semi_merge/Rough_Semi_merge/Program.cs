@@ -33,10 +33,22 @@ namespace Rough_Semi_merge
             {
                 Console.WriteLine(answer[z1]);
             }
-            Console.ReadKey(true);
             Console.WriteLine("----------------------------------------------------------------------------------");
 
 
+            Console.WriteLine("Function : Calculate the Closest Numbers");
+            int[] arr3 = new int[] { 5, 4, 3, 2 };
+            int[] answer1 = closestNumbers(arr3);
+            for (int z2 = 0; z2 < answer1.Length; z2++)
+            {
+                Console.Write(answer1[z2]);
+                if (z2 < answer1.Length - 1)
+                {
+                    Console.Write(" ,");
+                }
+            }
+            Console.ReadKey(true);
+            Console.WriteLine("----------------------------------------------------------------------------------");
 
         }// End of Main
 
@@ -213,6 +225,66 @@ namespace Rough_Semi_merge
         }// End of gradingStudents method
 
 
+
+        public static int[] closestNumbers(int [] Arr)
+        {
+            int j = 0;
+            int[] store = new int [Arr.Length + 10];
+
+            Arr = Sort(Arr);
+            double oldmin = 1/.00009 ;
+
+            for (int i = 0; i < Arr.Length - 1; i++)
+            {
+
+                   double newmin = Arr[i + 1] - Arr[i];
+
+                     if (newmin < 0)
+                     {
+                       newmin = newmin * -1;
+                     }
+
+                    if (oldmin > newmin)
+                    {
+                    oldmin = newmin;
+                    store[j] = Arr[i];
+                    j++;
+                    store[j] = Arr[i + 1];
+                     j++;
+
+                }// end of IF
+
+                    else if (oldmin == newmin)
+                    {
+
+                    store[j] = Arr[i];
+                    j++;
+                    store[j] = Arr[i + 1];
+                    j++;
+
+                }//  end of else if
+
+                else
+                    {
+                        //Do Nothing
+                    }
+
+                
+
+                //}//  end of FOR - 2
+
+
+            }// end of FOR - 1
+
+            int[] final = new int[j];
+
+            for (int i = 0; i < j; i++)
+            {
+                final[i] = store[i];
+            }
+            return final;
+
+        }// End of Method Closest Number
 
 
 
